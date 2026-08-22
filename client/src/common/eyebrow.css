@@ -1,0 +1,25 @@
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  white-space: nowrap;
+}
+
+.eyebrow__rule {
+  width: 2.25rem;
+  height: 1px;
+  flex-shrink: 0;
+  background: var(--molten);
+}
+
+.eyebrow__text {
+  font-family: var(--font-editor);
+  font-style: italic;
+  font-weight: 400;
+  /* Serif italic wants its natural fit — the wide tracking that suits
+     mono small-caps makes this look stretched. */
+  font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
+  letter-spacing: 0;
+  line-height: 1;
+  color: var(--bone-100);
+}

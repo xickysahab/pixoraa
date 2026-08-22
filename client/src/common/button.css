@@ -1,0 +1,96 @@
+.btn {
+  --btn-pad-y: 0.95rem;
+  --btn-pad-x: 1.6rem;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--btn-pad-y) var(--btn-pad-x);
+  border-radius: var(--r-pill);
+  font-family: var(--font-body);
+  font-size: var(--t-small);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out);
+  /* Meets the 44px minimum touch target. */
+  min-height: 44px;
+}
+
+/* Wipe fill — rises from the bottom on hover. */
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transform: translateY(101%);
+  transition: transform var(--dur-med) var(--ease-out);
+}
+
+.btn:hover::before,
+.btn:focus-visible::before { transform: translateY(0); }
+
+.btn__label { position: relative; }
+
+.btn__arrow {
+  display: grid;
+  place-items: center;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.btn:hover .btn__arrow { transform: translate(2px, -2px); }
+
+/* ---- Solid: molten, wipes to bone ---- */
+.btn--solid {
+  background: var(--molten);
+  color: var(--ink-000);
+  font-weight: 600;
+}
+.btn--solid::before { background: var(--bone-000); }
+.btn--solid:hover { color: var(--ink-000); }
+
+/* ---- Ghost: hairline, wipes to molten ---- */
+.btn--ghost {
+  border: 1px solid var(--line);
+  color: var(--bone-000);
+}
+.btn--ghost::before { background: var(--molten); }
+.btn--ghost:hover {
+  color: var(--ink-000);
+  border-color: var(--molten);
+}
+
+/* ---- Text: underline only ---- */
+.btn--text {
+  padding-inline: 0;
+  color: var(--bone-000);
+}
+.btn--text::before { display: none; }
+.btn--text::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0.7rem;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform-origin: right;
+  transform: scaleX(1);
+  transition: transform var(--dur-med) var(--ease-out);
+}
+.btn--text:hover { color: var(--molten); }
+.btn--text:hover::after {
+  transform-origin: left;
+  animation: btn-underline var(--dur-med) var(--ease-out);
+}
+
+@keyframes btn-underline {
+  0%   { transform: scaleX(1); transform-origin: right; }
+  49%  { transform: scaleX(0); transform-origin: right; }
+  50%  { transform: scaleX(0); transform-origin: left; }
+  100% { transform: scaleX(1); transform-origin: left; }
+}

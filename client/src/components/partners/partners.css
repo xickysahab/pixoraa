@@ -1,0 +1,137 @@
+.pmk {
+  position: relative;
+  padding-block: var(--section-y);
+  padding-inline: var(--gutter);
+  background: var(--ink-000);
+  border-top: 1px solid var(--line);
+}
+
+.pmk__inner {
+  max-width: var(--max-w);
+  margin-inline: auto;
+}
+
+.pmk__head {
+  display: grid;
+  gap: var(--s-4);
+  margin-bottom: var(--s-7);
+}
+
+/* ============ PANEL ============ */
+.pmk__panel {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--ink-100);
+  /* Generous, asymmetric padding — more below the rows than above the
+     header rule — so the strips sit optically centred rather than
+     mathematically centred. */
+  padding: var(--s-5) 0 var(--s-7);
+  overflow: hidden;
+}
+
+.pmk__panel-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding: 0 var(--s-6) var(--s-5);
+  margin-bottom: var(--s-6);
+  border-bottom: 1px solid var(--line);
+}
+
+.pmk__count {
+  color: var(--molten);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============ MARQUEE ROWS ============ */
+.pmarquee {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+}
+
+/* The cells carry their own borders now, so a divider between the rows
+   would just be a third competing line. */
+.pmarquee__rule { display: none; }
+
+/* ============ CLIENT CELL ============ */
+.plogo {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 140px;
+  height: 70px;
+  /* Half the 16px gap on each side. */
+  margin-inline: var(--s-2);
+  border: 1px solid rgba(242, 239, 233, 0.22);
+  background: transparent;
+  transition: border-color var(--dur-med) var(--ease-quint),
+              background-color var(--dur-med) var(--ease-quint);
+}
+
+.plogo:hover {
+  border-color: var(--molten);
+  background: var(--molten-haze);
+}
+
+.plogo__name {
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: var(--track-tight);
+  white-space: nowrap;
+  color: var(--bone-200);
+  transition: color var(--dur-med) var(--ease-quint);
+}
+
+.plogo:hover .plogo__name { color: var(--bone-000); }
+
+/* ---- registration crosses, straddling each corner ---- */
+.plogo__mark {
+  position: absolute;
+  color: rgba(242, 239, 233, 0.45);
+  transition: color var(--dur-med) var(--ease-quint);
+}
+
+.plogo:hover .plogo__mark { color: var(--molten); }
+
+.plogo__mark--tl { top: -4.5px; left: -4.5px; }
+.plogo__mark--tr { top: -4.5px; right: -4.5px; }
+.plogo__mark--bl { bottom: -4.5px; left: -4.5px; }
+.plogo__mark--br { bottom: -4.5px; right: -4.5px; }
+
+@media (min-width: 48rem) {
+  .plogo {
+    width: 240px;
+    height: 110px;
+  }
+  .plogo__name { font-size: 1.25rem; }
+}
+
+/* The mask fades to the panel's own ground, so strips dissolve into the
+   border instead of being cut off by it. */
+.pmk__panel .vmarquee {
+  -webkit-mask-image: linear-gradient(
+    to right, transparent, #000 12%, #000 88%, transparent
+  );
+  mask-image: linear-gradient(
+    to right, transparent, #000 12%, #000 88%, transparent
+  );
+}
+
+@media (min-width: 64rem) {
+  .pmk__head {
+    grid-template-columns: max-content 1fr;
+    column-gap: var(--s-8);
+    align-items: start;
+  }
+  .pmk__head .eyebrow { padding-top: 0.55em; }
+
+  .pmk__panel { padding: var(--s-6) 0 var(--s-8); }
+  .pmk__panel-head { padding-inline: var(--s-8); }
+  .pmarquee__rule { margin-inline: var(--s-8); }
+}

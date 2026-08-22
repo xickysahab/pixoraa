@@ -1,0 +1,20 @@
+.reveal {
+  display: block;
+}
+
+.reveal__line {
+  display: block;
+  overflow: hidden;
+  /* Padding stops descenders (g, y, p) being clipped by the mask. */
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+
+.reveal__inner {
+  display: block;
+  will-change: transform;
+}
+
+.reveal__inner--accent {
+  color: var(--molten);
+}

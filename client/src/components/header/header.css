@@ -1,0 +1,361 @@
+/* ============ SHELL ============ */
+/* Frosted dark bar — translucent so the page reads through it.
+   Scrolling only tightens the padding. */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-header);
+  padding-inline: var(--gutter);
+  padding-block: var(--s-4);
+  background: rgba(6, 6, 6, 0.72);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid var(--line-soft);
+  transition: padding-block var(--dur-med) var(--ease-out);
+}
+
+.header--stuck {
+  padding-block: var(--s-3);
+}
+
+.header__inner {
+  max-width: var(--max-w);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-5);
+}
+
+.header__left {
+  display: flex;
+  align-items: center;
+  gap: var(--s-5);
+}
+
+.header__center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.header__right {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+}
+
+/* ============ LOGO ============ */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: -0.02em;
+  color: var(--bone-000);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.logo:hover { color: var(--molten); }
+
+.logo__mark {
+  display: grid;
+  place-items: center;
+  color: var(--molten);
+  transition: transform var(--dur-med) var(--ease-out);
+}
+
+.logo:hover .logo__mark { transform: rotate(-90deg); }
+
+.logo__dim {
+  color: var(--bone-300);
+  font-weight: 500;
+}
+
+/* ============ LOCATION ============ */
+.loc {
+  display: none;
+  align-items: center;
+  gap: var(--s-3);
+  padding-left: var(--s-5);
+  border-left: 1px solid var(--line);
+}
+
+.loc__list {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+}
+
+.loc__item {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-2);
+}
+
+.loc__city {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--bone-300);
+}
+
+.loc__time {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  color: var(--bone-100);
+  /* Times are the first thing to go when the header tightens. */
+  display: none;
+}
+
+.loc__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--molten);
+  box-shadow: 0 0 0 0 var(--molten-glow);
+  animation: loc-pulse 2.4s var(--ease-io) infinite;
+}
+
+@keyframes loc-pulse {
+  0%   { box-shadow: 0 0 0 0 var(--molten-glow); }
+  70%  { box-shadow: 0 0 0 7px rgba(255, 77, 10, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 77, 10, 0); }
+}
+
+/* ============ NAV ============ */
+.nav { display: none; }
+
+.nav__list {
+  display: flex;
+  align-items: center;
+  gap: var(--s-6);
+}
+
+.nav__link {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 2px;
+  font-size: var(--t-small);
+  font-weight: 450;
+  letter-spacing: -0.01em;
+  color: var(--bone-100);
+  padding-block: var(--s-2);
+}
+
+/* Clipped stack: real text slides up, molten copy slides in behind it. */
+.nav__swap {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  height: 1.35em;
+}
+
+.nav__text {
+  display: block;
+  transition: transform var(--dur-med) var(--ease-out);
+}
+
+.nav__text--base { transform: translateY(0); }
+
+.nav__text--alt {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--molten);
+  transform: translateY(100%);
+}
+
+/* Both copies carry .nav__text, so each state has to move them
+   separately. Targeting .nav__text alone drove the resting copy AND the
+   molten copy to -100% together, which emptied the label entirely. */
+.nav__link:hover .nav__text--base,
+.nav__link:focus-visible .nav__text--base { transform: translateY(-100%); }
+
+.nav__link:hover .nav__text--alt,
+.nav__link:focus-visible .nav__text--alt { transform: translateY(0); }
+
+/* Section currently on screen: hold the molten copy up and mark it with
+   a dot, so the state survives the mouse moving away. */
+.nav__link--on .nav__text--base { transform: translateY(-100%); }
+.nav__link--on .nav__text--alt { transform: translateY(0); }
+
+.nav__link--on::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--molten);
+  transform: translateX(-50%);
+}
+
+/* ============ BURGER ============ */
+.burger {
+  display: grid;
+  place-content: center;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  transition: border-color var(--dur-fast) var(--ease-out),
+              background-color var(--dur-fast) var(--ease-out);
+}
+
+.burger:hover {
+  border-color: var(--molten);
+  background: var(--molten-haze);
+}
+
+.burger__bar {
+  display: block;
+  width: 17px;
+  height: 1.5px;
+  background: var(--bone-000);
+  transition: transform var(--dur-med) var(--ease-out);
+}
+
+.burger--open .burger__bar:first-child {
+  transform: translateY(3.75px) rotate(45deg);
+}
+.burger--open .burger__bar:last-child {
+  transform: translateY(-3.75px) rotate(-45deg);
+}
+
+/* ============ MOBILE MENU ============ */
+.mmenu {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-menu);
+  background: var(--ink-100);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: calc(var(--s-10) + var(--s-6)) var(--gutter) var(--s-7);
+}
+
+/* ---- close control ---- */
+.mclose {
+  position: absolute;
+  top: var(--s-4);
+  right: var(--gutter);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  /* Matches the burger's footprint so it lands where the finger
+     already is. */
+  min-height: 44px;
+  padding-inline: var(--s-4);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  color: var(--bone-000);
+  background: var(--ink-200);
+  transition: background-color var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out);
+}
+
+.mclose:hover,
+.mclose:focus-visible {
+  background: var(--molten);
+  border-color: var(--molten);
+  color: var(--ink-000);
+}
+
+.mclose__label {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.mmenu__item {
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+
+.mmenu__link {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-4);
+  padding-block: var(--s-4);
+  font-size: clamp(2.25rem, 11vw, 4.5rem);
+  font-weight: 800;
+  color: var(--bone-000);
+  transition: color var(--dur-fast) var(--ease-out),
+              padding-left var(--dur-med) var(--ease-out);
+}
+
+.mmenu__link:hover {
+  color: var(--molten);
+  padding-left: var(--s-4);
+}
+
+.mmenu__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--line);
+}
+
+.mmenu__email {
+  font-family: var(--font-mono);
+  font-size: var(--t-small);
+  color: var(--bone-000);
+}
+.mmenu__email:hover { color: var(--molten); }
+
+.mmenu__socials {
+  display: flex;
+  gap: var(--s-5);
+  font-size: var(--t-small);
+  color: var(--bone-200);
+}
+.mmenu__socials a:hover { color: var(--molten); }
+
+/* ============ SKIP LINK ============ */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--gutter);
+  z-index: calc(var(--z-cursor) + 1);
+  padding: var(--s-3) var(--s-4);
+  background: var(--molten);
+  color: var(--ink-000);
+  font-weight: 600;
+  border-radius: var(--r-sm);
+}
+.skip-link:focus { top: var(--s-4); }
+
+/* ============ BREAKPOINTS ============ */
+@media (min-width: 40rem) {
+  .loc { display: flex; }
+}
+
+@media (min-width: 64rem) {
+  .nav { display: block; }
+  .header__burger { display: none; }
+}
+
+/* Only once the header has room for them without crowding the nav. */
+@media (min-width: 80rem) {
+  .loc__time { display: inline; }
+}
+
+@media (max-width: 40rem) {
+  .header__cta { display: none; }
+}

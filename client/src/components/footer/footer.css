@@ -1,0 +1,216 @@
+.foot {
+  position: relative;
+  background: var(--ink-100);
+  border-top: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.foot__inner {
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  padding-top: var(--section-y);
+}
+
+/* ============ PITCH ============ */
+.foot__top {
+  padding-bottom: var(--s-8);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: var(--s-8);
+}
+
+.foot__pitch {
+  font-size: var(--t-h2);
+  max-width: 22ch;
+}
+
+.foot__pitch-dim { color: var(--bone-300); }
+
+/* ============ COLUMNS ============ */
+.foot__cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: var(--s-7) var(--s-5);
+  padding-bottom: var(--s-8);
+  border-bottom: 1px solid var(--line);
+}
+
+.foot__col-label {
+  margin-bottom: var(--s-4);
+  display: block;
+}
+
+.foot__navs {
+  display: contents;
+}
+
+.foot__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+
+.foot__link {
+  font-size: var(--t-small);
+  color: var(--bone-200);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.foot__link:hover { color: var(--molten); }
+
+.foot__based {
+  font-size: var(--t-small);
+  color: var(--bone-100);
+}
+
+.foot__based--dim { color: var(--bone-300); }
+
+/* ============ STUDIO CLOCK ============ */
+.fclock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  margin-top: var(--s-4);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--line);
+}
+
+.fclock__row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-2);
+}
+
+.fclock__city {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--bone-300);
+}
+
+/* Leader rule fills the gap so the times align on a common right edge
+   however long the city names are. */
+.fclock__rule {
+  flex: 1;
+  height: 1px;
+  min-width: var(--s-3);
+  background: var(--line);
+  transform: translateY(-2px);
+}
+
+.fclock__time {
+  font-family: var(--font-mono);
+  font-size: var(--t-small);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  color: var(--bone-000);
+}
+
+.foot__email {
+  display: inline-block;
+  margin-top: var(--s-4);
+  font-family: var(--font-mono);
+  font-size: var(--t-small);
+  color: var(--bone-000);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 2px;
+  transition: color var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out);
+}
+
+.foot__email:hover {
+  color: var(--molten);
+  border-color: var(--molten);
+}
+
+/* ============ NEWSLETTER ============ */
+.foot__field {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: var(--s-2);
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+
+.foot__field:focus-within { border-color: var(--molten); }
+
+.foot__input {
+  flex: 1;
+  min-width: 0;
+  background: none;
+  border: 0;
+  color: var(--bone-000);
+  font-family: var(--font-body);
+  font-size: var(--t-small);
+  padding-block: var(--s-2);
+}
+
+.foot__input::placeholder { color: var(--bone-300); }
+.foot__input:focus { outline: none; }
+
+.foot__submit {
+  flex-shrink: 0;
+  min-height: 44px;
+  padding-inline: var(--s-3);
+  font-size: var(--t-small);
+  font-weight: 600;
+  color: var(--molten);
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+.foot__submit:disabled { opacity: 0.5; cursor: default; }
+
+.foot__msg {
+  min-height: 1.4em;
+  margin-top: var(--s-2);
+  font-size: 0.75rem;
+}
+
+.foot__msg--error { color: #FF7A6B; }
+.foot__msg--done  { color: var(--molten); }
+.foot__msg--idle,
+.foot__msg--sending { color: var(--bone-300); }
+
+/* ============ META ============ */
+.foot__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding-block: var(--s-5);
+  font-size: 0.75rem;
+  color: var(--bone-300);
+}
+
+.foot__meta-dim { color: var(--bone-300); }
+
+/* ============ WORDMARK ============ */
+.foot__wordmark {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.12em;
+  padding-inline: var(--gutter);
+  padding-bottom: var(--s-4);
+  font-family: var(--font-display);
+  font-weight: 800;
+  /* Scales with the viewport so it always fills the width edge to edge. */
+  font-size: clamp(3rem, 15.5vw, 15rem);
+  line-height: 0.82;
+  letter-spacing: var(--track-mega);
+  color: var(--bone-000);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.foot__wordmark-dim { color: var(--ink-400); }
+
+.foot__wordmark-c {
+  font-size: 0.22em;
+  color: var(--molten);
+  align-self: flex-start;
+  padding-top: 0.6em;
+}

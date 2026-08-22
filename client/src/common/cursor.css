@@ -1,0 +1,40 @@
+.cursor__dot,
+.cursor__ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-cursor);
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+.cursor__dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  background: var(--molten);
+  /* Difference keeps the dot molten on the dark page but flips it to
+     ink over the molten hero, where molten-on-molten would vanish. */
+  mix-blend-mode: difference;
+}
+
+.cursor__ring {
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border: 1px solid var(--line-soft);
+  transition: width var(--dur-fast) var(--ease-out),
+              height var(--dur-fast) var(--ease-out),
+              margin var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out),
+              background-color var(--dur-fast) var(--ease-out);
+}
+
+.cursor__ring--hot {
+  width: 58px;
+  height: 58px;
+  margin: -29px 0 0 -29px;
+  border-color: var(--molten);
+  background: var(--molten-haze);
+  mix-blend-mode: difference;
+}

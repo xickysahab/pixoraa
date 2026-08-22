@@ -1,0 +1,44 @@
+.swap {
+  position: relative;
+  display: block;
+  width: fit-content;
+}
+
+/* Holds the box so the two absolute faces never collapse the layout. */
+.swap__ghost { visibility: hidden; }
+
+.swap__face {
+  position: absolute;
+  inset: 0;
+  display: block;
+  transform-origin: top;
+  transform: scaleY(1);
+  transition: transform var(--dur-med) var(--ease-quint),
+              color var(--dur-med) var(--ease-quint);
+  will-change: transform;
+}
+
+/* Resting copy — muted, folds up and away. */
+.swap__face--out { color: var(--bone-200); }
+
+/* Incoming copy — molten, starts folded flat against its baseline. */
+.swap__face--in {
+  transform-origin: bottom;
+  transform: scaleY(0);
+  color: var(--molten);
+  pointer-events: none;
+}
+
+/* Driven by the row, not the label, so hovering anywhere on the row
+   triggers the swap. */
+.swap-host:hover .swap__face--out,
+.swap-host:focus-visible .swap__face--out,
+.swap-host--on .swap__face--out { transform: scaleY(0); }
+
+.swap-host:hover .swap__face--in,
+.swap-host:focus-visible .swap__face--in,
+.swap-host--on .swap__face--in { transform: scaleY(1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .swap__face { transition-duration: 0.01ms; }
+}

@@ -1,0 +1,98 @@
+/* ============================================================
+   PIXORAA — DESIGN TOKENS
+   Single source of truth. No hex or px literals in components.
+   ============================================================ */
+
+:root {
+  /* ---- Color: base ---- */
+  --ink-000: #060606;        /* page ground, deepest */
+  --ink-100: #0B0B0B;        /* section ground */
+  --ink-200: #111111;        /* raised card */
+  --ink-300: #1A1A1A;        /* hover card */
+  --ink-400: #232323;        /* hairline strong */
+  --line:    #262626;        /* default 1px rule */
+  --line-soft: rgba(255, 255, 255, 0.08);
+
+  /* ---- Color: type ---- */
+  --bone-000: #F2EFE9;       /* headline white, warm */
+  --bone-100: #D8D4CC;       /* body */
+  --bone-200: #8E8A83;       /* muted / meta */
+  --bone-300: #5C5954;       /* faintest, labels */
+
+  /* ---- Color: accent ---- */
+  --molten:      #FF4D0A;    /* the one accent */
+  --molten-hot:  #FF6A31;    /* hover lift */
+  --molten-deep: #C83804;    /* pressed */
+  --molten-haze: rgba(255, 77, 10, 0.12);
+  --molten-glow: rgba(255, 77, 10, 0.35);
+
+  /* ---- Color: on molten ground ----
+     The hero flips the page: molten becomes the canvas, so the accent
+     colour is useless there. These are the ink tones that replace it
+     wherever type or controls sit on solid molten. */
+  --molten-ink:      #140A05;
+  --molten-ink-soft: rgba(20, 10, 5, 0.64);
+  --molten-line:     rgba(20, 10, 5, 0.24);
+  --bone-dim:        rgba(242, 239, 233, 0.78);
+
+  /* ---- Type families ---- */
+  --font-display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --font-body:    'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono:    'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  --font-editor:  'Instrument Serif', Georgia, serif;
+
+  /* ---- Type scale (fluid) ---- */
+  --t-mega:  clamp(3.5rem, 13vw, 13rem);
+  --t-h1:    clamp(2.75rem, 7.5vw, 7rem);
+  --t-h2:    clamp(2rem, 5vw, 4.25rem);
+  --t-h3:    clamp(1.5rem, 2.6vw, 2.25rem);
+  --t-lead:  clamp(1.05rem, 1.5vw, 1.4rem);
+  --t-body:  clamp(0.95rem, 1.05vw, 1.05rem);
+  --t-small: 0.875rem;
+  --t-label: 0.6875rem;
+
+  /* ---- Type detail ---- */
+  --track-mega: -0.045em;
+  --track-tight: -0.03em;
+  --track-label: 0.16em;
+  --leading-tight: 0.88;
+  --leading-snug: 1.05;
+  --leading-body: 1.6;
+
+  /* ---- Spacing ---- */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
+  --s-9: 6rem;
+  --s-10: 8rem;
+  --section-y: clamp(5rem, 11vw, 11rem);
+  --gutter: clamp(1.25rem, 4vw, 4.5rem);
+  --max-w: 90rem;
+
+  /* ---- Radius ---- */
+  --r-sm: 4px;
+  --r-md: 10px;
+  --r-lg: 20px;
+  --r-pill: 999px;
+
+  /* ---- Motion ----
+     --ease-quint is the signature slide easing carried over from the
+     live site; it's what makes long transforms feel weighted. */
+  --ease-quint: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-io:  cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 0.25s;
+  --dur-med:  0.5s;
+  --dur-slow: 0.9s;
+  --dur-zoom: 1s;
+
+  /* ---- Depth ---- */
+  --z-cursor: 9999;
+  --z-menu:   900;
+  --z-header: 800;
+}

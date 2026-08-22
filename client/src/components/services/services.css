@@ -1,0 +1,272 @@
+.svc { background: var(--ink-100); }
+
+/* ============ HEAD ============ */
+.svc__head {
+  display: grid;
+  gap: var(--s-4);
+  padding-bottom: var(--s-7);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: var(--s-8);
+}
+
+.svc__intro {
+  color: var(--bone-200);
+  max-width: 62ch;
+  text-wrap: pretty;
+}
+
+/* ============ GRID ============ */
+.svc__grid {
+  display: grid;
+  gap: var(--s-7);
+  align-items: start;
+}
+
+/* ============ STICKY INDEX ============ */
+.svc__index { display: none; }
+
+.svc__index-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding-bottom: var(--s-4);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: var(--s-5);
+}
+
+.svc__counter {
+  font-family: var(--font-mono);
+  font-size: var(--t-small);
+  font-variant-numeric: tabular-nums;
+  color: var(--bone-300);
+}
+
+.svc__counter em {
+  font-style: normal;
+  color: var(--molten);
+}
+
+.svc__counter-sep { margin-inline: 2px; }
+
+/* Vertical fill showing how far through the section the reader is. */
+.svc__progress {
+  position: absolute;
+  left: 0;
+  top: 5.5rem;
+  bottom: 0;
+  width: 2px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.svc__progress-fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--molten);
+  transform-origin: top;
+  transition: transform var(--dur-slow) var(--ease-quint);
+}
+
+.svc__index-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+
+.svc__index-item {
+  font-size: 1.375rem;
+  font-weight: 700;
+  font-family: var(--font-display);
+  letter-spacing: var(--track-tight);
+  transition: transform var(--dur-med) var(--ease-quint);
+}
+
+.svc__index-item--on { transform: translateX(var(--s-3)); }
+
+/* ============ BLOCKS ============ */
+.svc__blocks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-10);
+}
+
+.svc__block {
+  position: relative;
+  max-width: 50rem;
+  /* Anchor jumps from the index must clear the fixed header. */
+  scroll-margin-top: 7rem;
+}
+
+/* ---- image frame ---- */
+.svc__frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--ink-200);
+}
+
+.svc__photo {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  /* Oversized so it can drift against scroll without exposing an edge. */
+  height: 130%;
+  top: -15%;
+  object-fit: cover;
+  filter: brightness(0.86) saturate(0.92);
+}
+
+.svc__frame-wash {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, rgba(6, 6, 6, 0.75) 0%, transparent 55%),
+    linear-gradient(120deg, rgba(255, 77, 10, 0.14), transparent 55%);
+}
+
+.svc__frame-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.16;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.svc__frame-index {
+  position: absolute;
+  top: var(--s-4);
+  right: var(--s-5);
+  font-family: var(--font-mono);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.22);
+}
+
+/* ---- overlapping copy card ---- */
+.svc__card {
+  position: relative;
+  z-index: 2;
+  /* Rides up over the plate's lower edge — the overlap is the whole
+     point, so it is a negative margin, not a gap. */
+  margin-top: -3.5rem;
+  margin-left: var(--s-5);
+  padding: var(--s-6);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--ink-000);
+}
+
+.svc__rule {
+  display: block;
+  width: 2.25rem;
+  height: 2px;
+  background: var(--molten);
+  margin-bottom: var(--s-4);
+}
+
+.svc__name {
+  font-size: var(--t-h3);
+  font-weight: 700;
+  letter-spacing: var(--track-tight);
+  margin-bottom: var(--s-3);
+}
+
+.svc__blurb {
+  font-size: var(--t-lead);
+  color: var(--bone-100);
+  margin-bottom: var(--s-3);
+}
+
+.svc__detail-text {
+  font-size: var(--t-small);
+  color: var(--bone-300);
+  max-width: 52ch;
+}
+
+.svc__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-top: var(--s-5);
+}
+
+.svc__tag {
+  padding: 0.32rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bone-200);
+  background: var(--ink-200);
+}
+
+.svc__explore {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  margin-top: var(--s-5);
+  font-size: var(--t-small);
+  font-weight: 600;
+  color: var(--bone-000);
+  min-height: 44px;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.svc__explore:hover { color: var(--molten); }
+
+.svc__explore-disc {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  transition: background-color var(--dur-med) var(--ease-quint),
+              border-color var(--dur-med) var(--ease-quint),
+              color var(--dur-med) var(--ease-quint),
+              transform var(--dur-med) var(--ease-quint);
+}
+
+.svc__explore:hover .svc__explore-disc {
+  background: var(--molten);
+  border-color: var(--molten);
+  color: var(--ink-000);
+  transform: rotate(45deg);
+}
+
+/* ============ BREAKPOINTS ============ */
+@media (min-width: 48rem) {
+  .svc__card {
+    margin-top: -4.5rem;
+    margin-left: var(--s-8);
+    padding: var(--s-7);
+  }
+}
+
+@media (min-width: 64rem) {
+  .svc__head {
+    grid-template-columns: max-content 1fr;
+    column-gap: var(--s-8);
+  }
+  .svc__head .eyebrow { padding-top: 0.55em; }
+  .svc__title, .svc__intro { grid-column: 2; }
+
+  .svc__grid {
+    grid-template-columns: 1fr 3fr;
+    gap: var(--s-8);
+  }
+
+  .svc__index {
+    display: block;
+    position: sticky;
+    top: 7rem;
+    padding-left: var(--s-5);
+  }
+}
