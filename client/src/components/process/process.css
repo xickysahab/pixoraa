@@ -19,16 +19,18 @@
 
 /* ============ LAYOUT ============ */
 .proc__layout {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: var(--s-7);
-  align-items: start;
+  align-items: stretch;
 }
 
-/* ---- sticky rail ---- */
-.proc__rail { display: none; }
+.proc__rail { display: block; order: 2; }
 
 .proc__ticks {
-  display: flex;
+  /* Hidden on mobile — it would only repeat the steps below it.
+     Restored at the sticky breakpoint. */
+  display: none;
   flex-direction: column;
   gap: var(--s-3);
   padding-bottom: var(--s-6);
@@ -113,22 +115,15 @@
 }
 
 .proc__step {
+  position: relative;
   display: grid;
-  grid-template-columns: auto 1fr;
-  gap: var(--s-4);
-  padding-block: var(--s-7);
-  border-top: 1px solid var(--line);
-  transition: border-color var(--dur-med) var(--ease-quint);
+  grid-template-columns: 1fr;
+  padding-left: calc(20px + var(--s-4));
+  padding-bottom: var(--s-8);
 }
 
-.proc__step--on { border-top-color: var(--molten); }
 
-.proc__num {
-  padding-top: 0.55em;
-  transition: color var(--dur-med) var(--ease-quint);
-}
 
-.proc__step--on .proc__num { color: var(--molten); }
 
 .proc__title {
   font-size: var(--t-h3);
@@ -136,10 +131,6 @@
   margin-bottom: var(--s-2);
 }
 
-.proc__blurb {
-  color: var(--bone-100);
-  margin-bottom: var(--s-3);
-}
 
 .proc__detail {
   font-size: var(--t-small);
@@ -163,4 +154,189 @@
     position: sticky;
     top: 8rem;
   }
+}
+
+.proc__step:last-child { padding-bottom: 0; }
+
+/* ============ CONNECTOR RAIL ============ */
+.proc__rail-col {
+  /* Absolute, spanning the step's full box including its bottom padding.
+     As a grid item the rail ended where the grid rows ended, leaving a
+     gap above the next node. */
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+}
+
+/* Runs the rail's whole height, passing behind the node. Stacking the
+   node above a full-height line is what keeps the rail continuous — as
+   grid rows, the node's opaque fill plus a row-gap cut a ~28px break
+   into the line at every phase. */
+.proc__line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.proc__line-fill {
+  position: absolute;
+  inset: 0;
+  display: block;
+  background: var(--molten);
+  transform-origin: top;
+}
+
+.proc__node {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--ink-100);
+  transition: border-color var(--dur-med) var(--ease-quint);
+}
+
+.proc__node-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--bone-300);
+  transition: background-color var(--dur-med) var(--ease-quint),
+              transform var(--dur-med) var(--ease-quint);
+}
+
+.proc__step--on .proc__node { border-color: var(--molten); }
+.proc__step--on .proc__node-dot {
+  background: var(--molten);
+  transform: scale(1.35);
+}
+
+/* ============ BODY ============ */
+.proc__body { min-width: 0; padding-bottom: var(--s-5); }
+
+.proc__pill-row {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  margin-bottom: var(--s-4);
+}
+
+.proc__pill {
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--r-pill);
+  background: var(--ink-300);
+  border: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  letter-spacing: var(--track-label);
+  color: var(--bone-100);
+  transition: background-color var(--dur-med) var(--ease-quint),
+              border-color var(--dur-med) var(--ease-quint),
+              color var(--dur-med) var(--ease-quint);
+}
+
+.proc__step--on .proc__pill {
+  background: var(--molten);
+  border-color: var(--molten);
+  color: var(--ink-000);
+}
+
+.proc__num {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  letter-spacing: var(--track-label);
+  color: var(--bone-300);
+}
+
+/* ============ FACTS ============ */
+/* Duration and deliverable — the two questions a client actually asks. */
+.proc__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-5);
+  margin-top: var(--s-5);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--line);
+}
+
+.proc__fact dt {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--bone-300);
+  margin-bottom: 4px;
+}
+
+.proc__fact dd {
+  font-size: var(--t-small);
+  font-weight: 600;
+  color: var(--bone-000);
+}
+
+/* ============ PHASE PHOTOGRAPH ============ */
+.proc__shot {
+  position: relative;
+  grid-column: 1;
+  aspect-ratio: 16 / 10;
+  margin-top: var(--s-5);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: var(--ink-200);
+}
+
+.proc__shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.78) saturate(0.9);
+  transition: filter var(--dur-zoom) var(--ease-quint),
+              scale var(--dur-zoom) var(--ease-quint);
+  scale: 1;
+}
+
+.proc__step--on .proc__shot img {
+  filter: brightness(0.95) saturate(1);
+  scale: 1.03;
+}
+
+.proc__shot-wash {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255, 77, 10, 0.12), transparent 60%);
+}
+
+@media (min-width: 48rem) {
+  /* Copy and photograph side by side, so a phase is one glance. */
+  .proc__step {
+    grid-template-columns: 1.1fr 1fr;
+    column-gap: var(--s-6);
+    padding-left: calc(20px + var(--s-6));
+  }
+  .proc__shot { grid-column: 2; grid-row: 1; margin-top: 0; }
+}
+
+@media (min-width: 64rem) {
+  .proc__layout {
+    display: grid;
+    grid-template-columns: 1fr 1.9fr;
+    gap: var(--s-8);
+    align-items: start;
+  }
+  .proc__rail { order: 0; position: sticky; top: 8rem; }
+  .proc__ticks { display: flex; }
 }

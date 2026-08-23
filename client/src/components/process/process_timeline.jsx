@@ -35,6 +35,7 @@ export default function ProcessTimeline() {
             key={step.id}
             step={step}
             index={i}
+            isLast={i === processSteps.length - 1}
             onEnter={handleEnter}
           />
         ))}

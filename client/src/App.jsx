@@ -9,6 +9,8 @@ import Services from './components/services/main_services';
 import Work from './components/work/main_work';
 import Gallery from './components/gallery/main_gallery';
 import Process from './components/process/main_process';
+import Insights from './components/insights/main_insights';
+import Faq from './components/faq/main_faq';
 import Footer from './components/footer/main_footer';
 import Cursor from './common/cursor';
 import useSmoothScroll from './common/use_smooth_scroll';
@@ -43,6 +45,8 @@ export default function App() {
         <Work />
         <Gallery />
         <Process />
+        <Insights />
+        <Faq />
       </main>
       <Footer />
     </MotionConfig>

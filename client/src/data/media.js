@@ -29,6 +29,27 @@ import wkWarpspeed from '../assets/images/work/warpspeed.jpg';
 import wkMagnolia from '../assets/images/work/magnolia.jpg';
 import wkGlobalBank from '../assets/images/work/global-bank.jpg';
 
+// ---- process phases ----
+import prDiscovery from '../assets/images/process/discovery.jpg';
+import prStrategy from '../assets/images/process/strategy.jpg';
+import prCreation from '../assets/images/process/creation.jpg';
+import prLaunch from '../assets/images/process/launch.jpg';
+import prGrowth from '../assets/images/process/growth.jpg';
+
+// ---- insights ----
+import inShotDay from '../assets/images/insights/shot-day.jpg';
+import inRetouching from '../assets/images/insights/retouching.jpg';
+import inLighting from '../assets/images/insights/lighting.jpg';
+
+// ---- gallery hover clips ----
+import vStudioLight from '../assets/video/studio-light.mp4';
+import vLightingSet from '../assets/video/lighting-set.mp4';
+import vCameraRig from '../assets/video/camera-rig.mp4';
+import vGlassware from '../assets/video/glassware.mp4';
+import vTripodCheck from '../assets/video/tripod-check.mp4';
+import vUmbrellaSet from '../assets/video/umbrella-set.mp4';
+import vMonitorReview from '../assets/video/monitor-review.mp4';
+
 // ---- gallery ----
 import g1 from '../assets/images/gallery/g1-review.jpg';
 import g2 from '../assets/images/gallery/g2-setup.jpg';
@@ -56,6 +77,37 @@ export const workImages = {
   warpspeed: wkWarpspeed,
   magnolia: wkMagnolia,
   'global-bank': wkGlobalBank,
+};
+
+/** Keyed by process step id. */
+export const processImages = {
+  discovery: prDiscovery,
+  strategy: prStrategy,
+  creation: prCreation,
+  launch: prLaunch,
+  growth: prGrowth,
+};
+
+/** Keyed by insight post id. */
+export const insightImages = {
+  'shot-day': inShotDay,
+  retouching: inRetouching,
+  lighting: inLighting,
+};
+
+/**
+ * Short muted loops that play over a tile's still on hover. Kept small
+ * and SD on purpose — these are thumbnails, and they are fetched only
+ * when a tile is actually hovered.
+ */
+export const galleryVideos = {
+  studioLight: vStudioLight,
+  lightingSet: vLightingSet,
+  cameraRig: vCameraRig,
+  glassware: vGlassware,
+  tripodCheck: vTripodCheck,
+  umbrellaSet: vUmbrellaSet,
+  monitorReview: vMonitorReview,
 };
 
 export const galleryImages = { g1, g2, g3, g4, g5, g6, g7 };

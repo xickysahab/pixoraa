@@ -1,0 +1,125 @@
+.faq {
+  background: var(--ink-100);
+  border-top: 1px solid var(--line);
+}
+
+.faq__layout {
+  display: grid;
+  gap: var(--s-8);
+  align-items: start;
+}
+
+/* ============ HEAD ============ */
+.faq__head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s-4);
+}
+
+.faq__heading { font-size: var(--t-h1); }
+
+.faq__intro {
+  font-size: var(--t-lead);
+  color: var(--bone-200);
+  max-width: 32ch;
+  margin-bottom: var(--s-2);
+}
+
+/* ============ LIST ============ */
+.faq__list { border-top: 1px solid var(--line); }
+
+.faq__item {
+  border-bottom: 1px solid var(--line);
+  transition: border-color var(--dur-med) var(--ease-quint);
+}
+
+.faq__item--open { border-bottom-color: var(--molten); }
+
+.faq__q { margin: 0; }
+
+.faq__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  width: 100%;
+  /* Comfortably over the 44px touch minimum across the whole row. */
+  padding-block: var(--s-5);
+  text-align: left;
+  color: var(--bone-000);
+  transition: color var(--dur-fast) var(--ease-out),
+              padding-left var(--dur-med) var(--ease-quint);
+}
+
+.faq__trigger:hover,
+.faq__trigger:focus-visible { color: var(--molten); }
+
+.faq__item--open .faq__trigger { padding-left: var(--s-3); }
+
+.faq__q-text {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: var(--track-tight);
+}
+
+/* ---- plus that becomes a minus ---- */
+.faq__icon {
+  position: relative;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  transition: background-color var(--dur-med) var(--ease-quint),
+              border-color var(--dur-med) var(--ease-quint),
+              transform var(--dur-med) var(--ease-quint);
+}
+
+.faq__item--open .faq__icon {
+  background: var(--molten);
+  border-color: var(--molten);
+  transform: rotate(180deg);
+}
+
+.faq__icon-bar {
+  position: absolute;
+  width: 11px;
+  height: 1.5px;
+  background: currentColor;
+  transition: background-color var(--dur-med) var(--ease-quint),
+              opacity var(--dur-med) var(--ease-quint),
+              transform var(--dur-med) var(--ease-quint);
+}
+
+.faq__icon-bar--v { transform: rotate(90deg); }
+
+/* The vertical stroke retracts, leaving a minus. */
+.faq__item--open .faq__icon-bar { background: var(--ink-000); }
+.faq__item--open .faq__icon-bar--v { opacity: 0; transform: rotate(0deg); }
+
+/* ---- answer ---- */
+.faq__panel { overflow: hidden; }
+
+.faq__a {
+  padding-bottom: var(--s-5);
+  padding-right: var(--s-7);
+  color: var(--bone-200);
+  max-width: 62ch;
+  text-wrap: pretty;
+}
+
+/* ============ BREAKPOINTS ============ */
+@media (min-width: 64rem) {
+  .faq__layout {
+    grid-template-columns: 1fr 1.9fr;
+    gap: var(--s-8);
+  }
+
+  .faq__head { position: sticky; top: 7rem; }
+
+  .faq__q-text { font-size: 1.1875rem; }
+}

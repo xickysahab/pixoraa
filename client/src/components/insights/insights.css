@@ -1,0 +1,218 @@
+.ins {
+  background: var(--ink-000);
+  border-top: 1px solid var(--line);
+}
+
+/* ============ HEAD ============ */
+.ins__head {
+  display: grid;
+  gap: var(--s-4);
+  padding-bottom: var(--s-7);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: var(--s-8);
+}
+
+.ins__intro {
+  display: grid;
+  gap: var(--s-3);
+  color: var(--bone-200);
+  max-width: 60ch;
+}
+
+.ins__aside { color: var(--bone-300); }
+
+/* ============ GRID ============ */
+.ins__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-6);
+}
+
+/* ============ CARD ============ */
+.ins__card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--ink-100);
+  transition: border-color var(--dur-med) var(--ease-quint),
+              transform var(--dur-med) var(--ease-quint);
+}
+
+.ins__card:hover {
+  border-color: var(--molten);
+  transform: translateY(-4px);
+}
+
+.ins__frame {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--ink-200);
+}
+
+.ins__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.8) saturate(0.92);
+  transition: scale var(--dur-zoom) var(--ease-quint),
+              filter var(--dur-zoom) var(--ease-quint);
+  scale: 1;
+}
+
+.ins__card:hover .ins__photo {
+  scale: 1.06;
+  filter: brightness(0.95) saturate(1);
+}
+
+/* Darkest at the left edge, where the vertical date sits. */
+.ins__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right, rgba(6, 6, 6, 0.75) 0%, rgba(6, 6, 6, 0.15) 45%, transparent 100%
+  );
+}
+
+/* ---- film strip: ticks + rotated date ---- */
+.ins__strip {
+  position: absolute;
+  left: var(--s-4);
+  top: var(--s-4);
+  bottom: var(--s-4);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.ins__ticks { display: flex; gap: 2px; }
+
+.ins__tick {
+  display: block;
+  width: 1px;
+  height: 26px;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.ins__date {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+  white-space: nowrap;
+  /* Reads bottom-to-top down the frame's left edge. */
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.ins__category {
+  position: absolute;
+  top: var(--s-4);
+  right: var(--s-4);
+  padding: 0.28rem 0.65rem;
+  border-radius: var(--r-pill);
+  background: rgba(6, 6, 6, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--bone-100);
+}
+
+/* ---- body ---- */
+.ins__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: var(--s-3);
+  padding: var(--s-5);
+  border-top: 1px solid var(--line);
+}
+
+.ins__title {
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: var(--track-tight);
+  transition: color var(--dur-med) var(--ease-quint);
+}
+
+.ins__card:hover .ins__title { color: var(--molten); }
+
+.ins__excerpt {
+  font-size: var(--t-small);
+  color: var(--bone-300);
+  /* Pushes the byline to the card's foot so all three align. */
+  flex: 1;
+}
+
+.ins__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--line);
+}
+
+.ins__avatar {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--ink-300);
+  border: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  color: var(--bone-100);
+}
+
+.ins__byline {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.ins__author {
+  font-size: var(--t-small);
+  font-weight: 600;
+  color: var(--bone-000);
+}
+
+.ins__role {
+  font-size: 0.6875rem;
+  color: var(--bone-300);
+}
+
+.ins__read {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  letter-spacing: var(--track-label);
+  color: var(--bone-300);
+}
+
+/* ============ BREAKPOINTS ============ */
+@media (min-width: 40rem) {
+  .ins__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 64rem) {
+  .ins__grid { grid-template-columns: repeat(3, 1fr); }
+
+  .ins__head {
+    grid-template-columns: max-content 1fr;
+    column-gap: var(--s-8);
+    align-items: start;
+  }
+  .ins__head .eyebrow { padding-top: 0.55em; }
+  .ins__heading, .ins__intro { grid-column: 2; }
+}

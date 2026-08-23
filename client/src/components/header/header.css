@@ -51,6 +51,8 @@
 .logo {
   display: inline-flex;
   align-items: center;
+  /* Was 26px tall — well under the touch minimum. */
+  min-height: 44px;
   gap: var(--s-2);
   font-family: var(--font-display);
   font-weight: 700;
@@ -358,4 +360,21 @@
 
 @media (max-width: 40rem) {
   .header__cta { display: none; }
+}
+
+
+/* ============ MOBILE HEADER ============ */
+@media (max-width: 40rem) {
+  .header { padding-block: var(--s-3); }
+  .header--stuck { padding-block: var(--s-2); }
+
+  /* The empty centre column still claimed flex space with the nav
+     hidden, squeezing the logo against the burger. */
+  .header__center { display: none; }
+
+  .logo { font-size: 0.9375rem; }
+
+  /* "Digital©" is the first thing to go when the bar tightens — the
+     wordmark still reads, and the burger gets room. */
+  .logo__dim { display: none; }
 }

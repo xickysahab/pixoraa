@@ -60,7 +60,7 @@
   scale: 1;
 }
 
-.bento__cell:hover .gmedia__el {
+.bento__cell--on .gmedia__el {
   filter: brightness(1) saturate(1.05);
   scale: 1.05;
 }
@@ -75,8 +75,7 @@
   transition: opacity var(--dur-med) var(--ease-quint);
 }
 
-.bento__cell:hover .bento__scrim,
-.bento__btn:focus-visible .bento__scrim { opacity: 1; }
+.bento__cell--on .bento__scrim { opacity: 1; }
 
 .bento__meta {
   position: absolute;
@@ -86,17 +85,26 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity var(--dur-med) var(--ease-quint),
-              transform var(--dur-med) var(--ease-quint);
+  z-index: 3;
 }
 
-.bento__cell:hover .bento__meta,
-.bento__btn:focus-visible .bento__meta {
-  opacity: 1;
-  transform: translateY(0);
+/* Each line rides up out of its own clip, so the caption is revealed
+   rather than faded — the same masked reveal the headlines use. */
+.bento__mask { display: block; overflow: hidden; }
+
+.bento__title,
+.bento__desc {
+  display: block;
+  transform: translateY(110%);
+  transition: transform var(--dur-med) var(--ease-quint);
 }
+
+.bento__cell--on .bento__title { transform: translateY(0); }
+.bento__cell--on .bento__desc {
+  transform: translateY(0);
+  transition-delay: 0.06s;
+}
+
 
 .bento__title {
   font-size: var(--t-small);
@@ -248,4 +256,78 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+
+/* ============ HOVER CLIP ============ */
+.bento__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  opacity: 0;
+  /* Fades up only once the clip is actually playing, so a slow network
+     never shows a black rectangle where the photograph was. */
+  transition: opacity 0.45s var(--ease-quint);
+  pointer-events: none;
+}
+
+.bento__video--on { opacity: 1; }
+
+.bento__scrim { z-index: 2; }
+
+.bento__badge {
+  position: absolute;
+  top: var(--s-4);
+  left: var(--s-4);
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--r-pill);
+  background: rgba(6, 6, 6, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--bone-100);
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity var(--dur-med) var(--ease-quint),
+              transform var(--dur-med) var(--ease-quint);
+}
+
+.bento__cell--on .bento__badge { opacity: 1; transform: translateY(0); }
+
+.bento__badge-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--molten);
+}
+
+/* ============ TOUCH ============ */
+/* There is no hover on a phone, so anything the hover state reveals is
+   simply never seen. The captions carry the only labelling these seven
+   photographs have — they are shown outright, and the scrim with them so
+   they stay readable over the image. */
+@media (hover: none) {
+  .bento__scrim { opacity: 1; }
+  .bento__title,
+  .bento__desc { transform: translateY(0); }
+  /* The clip can never play without a pointer, so the badge would be
+     advertising something unreachable. */
+  .bento__badge { display: none; }
+  .bento__cell .gmedia__el { filter: brightness(0.85) saturate(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bento__title,
+  .bento__desc { transition-duration: 0.01ms; }
 }

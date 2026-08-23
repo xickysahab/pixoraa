@@ -20,6 +20,7 @@ export const navLinks = [
   { id: 'work', label: 'Work', href: '#work' },
   { id: 'gallery', label: 'Studio', href: '#gallery' },
   { id: 'process', label: 'Process', href: '#process' },
+  { id: 'journal', label: 'Journal', href: '#journal' },
   { id: 'contact', label: 'Contact', href: '#contact' },
 ];
 

@@ -1,4 +1,4 @@
-import { galleryImages } from './media';
+import { galleryImages, galleryVideos } from './media';
 
 export const galleryIntro = {
   label: 'Inside the studio',
@@ -19,6 +19,7 @@ export const galleryItems = [
     id: 1,
     type: 'image',
     url: galleryImages.g6,
+    video: galleryVideos.cameraRig,
     title: 'On location',
     desc: 'Handheld rig, campaign film',
     span: 'g-tall',
@@ -27,6 +28,7 @@ export const galleryItems = [
     id: 2,
     type: 'image',
     url: galleryImages.g3,
+    video: galleryVideos.studioLight,
     title: 'Studio floor',
     desc: 'Cyclorama and strobes, Delhi',
     span: 'g-wide',
@@ -35,6 +37,7 @@ export const galleryItems = [
     id: 3,
     type: 'image',
     url: galleryImages.g7,
+    video: galleryVideos.glassware,
     title: 'Colour on colour',
     desc: 'Footwear still, product set',
     span: 'g-tall',
@@ -43,6 +46,7 @@ export const galleryItems = [
     id: 4,
     type: 'image',
     url: galleryImages.g2,
+    video: galleryVideos.lightingSet,
     title: 'Set build',
     desc: 'Still-life table under RGB tubes',
     span: 'g-wide',
@@ -51,6 +55,7 @@ export const galleryItems = [
     id: 5,
     type: 'image',
     url: galleryImages.g4,
+    video: galleryVideos.tripodCheck,
     title: 'Camera check',
     desc: 'Key light and tripod, pre-shoot',
     span: 'g-tall',
@@ -59,6 +64,7 @@ export const galleryItems = [
     id: 6,
     type: 'image',
     url: galleryImages.g5,
+    video: galleryVideos.umbrellaSet,
     title: 'Studio still',
     desc: 'Medium format under the umbrella',
     span: 'g-wide',
@@ -67,6 +73,7 @@ export const galleryItems = [
     id: 7,
     type: 'image',
     url: galleryImages.g1,
+    video: galleryVideos.monitorReview,
     title: 'Frame check',
     desc: 'Reviewing takes on the monitor',
     span: 'g-tall',

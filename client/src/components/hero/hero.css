@@ -395,3 +395,68 @@
     bottom: 5.25rem;
   }
 }
+
+
+/* ============ MOBILE HERO ============ */
+/* On a phone the portrait was anchored to the hero's bottom edge at 66vh,
+   which pushed it past the fold and cropped it to hair and forehead — the
+   subject was effectively missing, with half a screen of empty orange
+   above it. Here she becomes the hero's whole ground instead, with the
+   orange laid over as a scrim rather than sitting beside her. */
+@media (max-width: 64rem) {
+  .hero {
+    min-height: 100svh;
+    padding-bottom: var(--s-7);
+  }
+
+  .hero__portrait {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin-inline: 0;
+    z-index: 0;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .hero__portrait-img {
+    height: 100%;
+    object-position: 68% 18%;
+    filter: grayscale(1) contrast(1.22) brightness(0.62);
+  }
+
+  .hero__portrait::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      /* Vertical: opaque only across the small intro copy at the top,
+         then opens right up so the photograph reads as a photograph
+         rather than a ghost under orange. */
+      linear-gradient(
+        to bottom,
+        rgba(255, 106, 49, 0.95) 0%,
+        rgba(255, 96, 34, 0.88) 24%,
+        rgba(236, 80, 16, 0.42) 44%,
+        rgba(180, 56, 8, 0.24) 66%,
+        rgba(48, 16, 4, 0.44) 100%
+      ),
+      /* Horizontal: keeps the left column — where every line of type
+         sits — heavier than the right. */
+      linear-gradient(
+        to right,
+        rgba(214, 68, 12, 0.22) 0%,
+        rgba(214, 68, 12, 0.10) 52%,
+        rgba(214, 68, 12, 0) 100%
+      );
+  }
+
+  /* Content has to clear the portrait now that it fills the section. */
+  .hero__inner,
+  .hero__wordmark { position: relative; z-index: 2; }
+
+  .hero__top { gap: var(--s-5); }
+  .hero__intro { gap: var(--s-3); }
+  .hero__stage { min-height: 0; }
+}
