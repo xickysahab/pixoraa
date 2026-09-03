@@ -1,4 +1,5 @@
 import { motion, useScroll, useSpring } from 'motion/react';
+import './overlay.css';
 
 /** Hairline read-through of page progress, pinned to the top edge. */
 export default function ScrollProgress() {

@@ -1,6 +1,9 @@
 export const partnersIntro = {
   label: 'Who we work with',
-  headline: 'Trusted by brands who shape the world.',
+  // Array, like hero.headline: each entry is one masked reveal line,
+  // so the break is a design decision the data holds rather than a
+  // string the component re-types.
+  headline: ['Trusted by brands', 'who shape the world.'],
 };
 
 /**

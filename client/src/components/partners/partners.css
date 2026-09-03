@@ -52,10 +52,6 @@
   gap: var(--s-5);
 }
 
-/* The cells carry their own borders now, so a divider between the rows
-   would just be a third competing line. */
-.pmarquee__rule { display: none; }
-
 /* ============ CLIENT CELL ============ */
 .plogo {
   position: relative;
@@ -133,5 +129,4 @@
 
   .pmk__panel { padding: var(--s-6) 0 var(--s-8); }
   .pmk__panel-head { padding-inline: var(--s-8); }
-  .pmarquee__rule { margin-inline: var(--s-8); }
 }

@@ -8,7 +8,7 @@ import './footer.css';
 
 export default function Footer() {
   return (
-    <footer className="foot" id="contact">
+    <footer className="foot">
       <div className="foot__inner">
         <div className="foot__top">
           <p className="foot__pitch display">

@@ -1,5 +1,3 @@
-import { insightImages } from './media';
-
 export const insightsIntro = {
   label: 'Journal',
   headline: 'Insights & stories.',
@@ -50,5 +48,3 @@ export const insights = [
     readTime: '6 min',
   },
 ];
-
-export const insightsImages = insightImages;

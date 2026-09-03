@@ -71,8 +71,6 @@ ul, ol { list-style: none; }
   color: var(--bone-300);
 }
 
-.label--accent { color: var(--molten); }
-
 /* Display headline */
 .display {
   font-family: var(--font-display);

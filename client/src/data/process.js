@@ -1,6 +1,6 @@
 export const processIntro = {
   label: 'How we work',
-  headline: 'How we guide every project to the finish line.',
+  headline: ['How we guide every', 'project to the finish line.'],
   body: 'Each phase is handled by specialists who work together seamlessly, ensuring nothing falls through the cracks.',
 };
 

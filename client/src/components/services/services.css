@@ -64,25 +64,6 @@
 
 .svc__counter-sep { margin-inline: 2px; }
 
-/* Vertical fill showing how far through the section the reader is. */
-.svc__progress {
-  position: absolute;
-  left: 0;
-  top: 5.5rem;
-  bottom: 0;
-  width: 2px;
-  background: var(--line);
-  overflow: hidden;
-}
-
-.svc__progress-fill {
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: var(--molten);
-  transform-origin: top;
-  transition: transform var(--dur-slow) var(--ease-quint);
-}
 
 .svc__index-list {
   /* All six visible at once as 3x2, rather than a scroller that hid half
