@@ -67,8 +67,6 @@
   color: var(--bone-100);
 }
 
-.foot__based--dim { color: var(--bone-300); }
-
 /* ============ STUDIO CLOCK ============ */
 .fclock {
   display: flex;

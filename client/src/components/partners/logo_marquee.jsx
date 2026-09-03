@@ -21,7 +21,6 @@ export default function LogoMarquee() {
         ))}
       </VelocityMarquee>
 
-      <span className="pmarquee__rule" aria-hidden="true" />
 
       <VelocityMarquee baseSpeed={1.05} reverse>
         {partnersRowTwo.map((n) => (

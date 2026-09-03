@@ -8,7 +8,7 @@ export default function SectionLabel() {
       <Eyebrow>{partnersIntro.label}</Eyebrow>
       <RevealText
         as="h2"
-        lines={['Trusted by brands', 'who shape the world.']}
+        lines={partnersIntro.headline}
         className="pmk__title sec-title"
       />
     </header>

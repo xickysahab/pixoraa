@@ -1,11 +1,12 @@
-import { site } from './site';
-
 export const faqIntro = {
   label: 'Questions',
   headline: 'FAQ.',
   body: 'Answers to the things people usually ask — and room to ask your own.',
   ctaLabel: 'Ask a question',
-  ctaHref: `mailto:${site.email}?subject=Question%20for%20Pixoraa`,
+  // Every CTA on the page lands on the contact form. A mailto here
+  // dropped the visitor into a blank mail client instead, which is a
+  // dead end on any machine without one configured.
+  ctaHref: '#contact',
 };
 
 /**

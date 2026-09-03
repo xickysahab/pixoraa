@@ -1,0 +1,134 @@
+.tst {
+  background: var(--ink-100);
+  border-top: 1px solid var(--line);
+}
+
+.tst__head {
+  display: grid;
+  gap: var(--s-6);
+  margin-bottom: var(--s-8);
+}
+
+.tst__heading { margin-top: var(--s-4); }
+
+.tst__aside {
+  display: grid;
+  gap: var(--s-3);
+  align-content: end;
+}
+
+.tst__score {
+  display: flex;
+  align-items: baseline;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-variant-numeric: tabular-nums;
+}
+
+.tst__score-of {
+  font-size: 0.45em;
+  color: var(--bone-300);
+}
+
+.tst__intro {
+  color: var(--bone-200);
+  font-size: var(--t-small);
+  line-height: var(--leading-body);
+  max-width: 40ch;
+}
+
+/* ---- rail ---- */
+.tst__rail {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(85%, 24rem);
+  gap: var(--s-4);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  /* Gutter bleed so cards run to the screen edge on mobile instead of
+     stopping short of it, which reads as a broken grid. */
+  margin-inline: calc(var(--gutter) * -1);
+  padding-inline: var(--gutter);
+  padding-bottom: var(--s-4);
+  scrollbar-width: none;
+}
+
+.tst__rail::-webkit-scrollbar { display: none; }
+
+.tst__item { scroll-snap-align: start; }
+
+.tst__card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: var(--s-6);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--ink-000);
+  transition: border-color var(--dur-med) var(--ease-quint);
+}
+
+.tst__card:hover { border-color: var(--molten); }
+
+.tst__quote-mark {
+  font-size: 3.5rem;
+  line-height: 0.6;
+  color: var(--molten);
+}
+
+.tst__quote {
+  margin-top: var(--s-5);
+  flex: 1;
+  color: var(--bone-100);
+  font-size: var(--t-body);
+  line-height: var(--leading-body);
+  text-wrap: pretty;
+}
+
+.tst__by {
+  display: grid;
+  gap: var(--s-1);
+  margin-top: var(--s-6);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--line);
+}
+
+.tst__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: var(--track-tight);
+  color: var(--bone-000);
+}
+
+.tst__role {
+  font-size: var(--t-small);
+  color: var(--bone-300);
+}
+
+.tst__stars {
+  display: inline-flex;
+  gap: 2px;
+  margin-top: var(--s-2);
+  color: var(--ink-400);
+}
+
+.tst__star--on { color: var(--molten); }
+
+@media (min-width: 64rem) {
+  .tst__head {
+    grid-template-columns: 1fr minmax(0, 22rem);
+    align-items: end;
+    column-gap: var(--s-9);
+  }
+
+  /* Enough room for four across — the rail becomes a static grid and
+     the snap points stop mattering. */
+  .tst__rail {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(4, 1fr);
+    overflow: visible;
+    margin-inline: 0;
+    padding-inline: 0;
+  }
+
+  .tst__card { padding: var(--s-6) var(--s-5); }
+}

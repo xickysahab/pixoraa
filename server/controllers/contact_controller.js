@@ -7,7 +7,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
  */
 export async function submitContact(req, res, next) {
   try {
-    const { name, email, company, budget, message, website } = req.body ?? {};
+    const { name, email, company, service, message, website } = req.body ?? {};
 
     // Honeypot: bots fill hidden fields, humans never see them.
     if (website) {
@@ -29,7 +29,7 @@ export async function submitContact(req, res, next) {
       name: name.trim(),
       email: email.trim().toLowerCase(),
       company: company?.trim() || null,
-      budget: budget || null,
+      service: service || null,
       message: message.trim(),
       receivedAt: new Date().toISOString(),
     };

@@ -1,0 +1,88 @@
+.ctab {
+  position: relative;
+  padding-block: clamp(4rem, 8vw, 7.5rem);
+  padding-inline: var(--gutter);
+  border-top: 1px solid var(--line);
+}
+
+.ctab--ink { background: var(--ink-100); }
+
+.ctab__inner {
+  max-width: var(--max-w);
+  margin-inline: auto;
+}
+
+.ctab__body {
+  display: grid;
+  gap: var(--s-6);
+  margin-top: var(--s-5);
+}
+
+.ctab__heading { max-width: 16ch; }
+
+.ctab__aside {
+  display: grid;
+  gap: var(--s-5);
+  justify-items: start;
+}
+
+.ctab__copy {
+  color: var(--bone-100);
+  font-size: var(--t-lead);
+  line-height: var(--leading-body);
+  max-width: 48ch;
+}
+
+.ctab__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-top: var(--s-7);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--line);
+}
+
+.ctab__meta-item {
+  padding: var(--s-2) var(--s-4);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  color: var(--bone-200);
+}
+
+/* ---- inverted band: molten ground, ink type ---- */
+.ctab--molten {
+  background: var(--molten);
+  border-top-color: var(--molten);
+}
+
+.ctab--molten .ctab__heading { color: var(--molten-ink); }
+.ctab--molten .ctab__copy { color: var(--molten-ink-soft); }
+.ctab--molten .eyebrow__text { color: var(--molten-ink); }
+.ctab--molten .eyebrow__rule { background: var(--molten-line); }
+.ctab--molten .ctab__meta { border-top-color: var(--molten-line); }
+
+.ctab--molten .ctab__meta-item {
+  border-color: var(--molten-line);
+  color: var(--molten-ink-soft);
+}
+
+/* The solid button inverts too, or it disappears into the ground. */
+.ctab--molten .btn--solid {
+  background: var(--molten-ink);
+  color: var(--bone-000);
+  border-color: var(--molten-ink);
+}
+
+.ctab--molten .btn--solid:hover {
+  background: var(--ink-000);
+  border-color: var(--ink-000);
+}
+
+@media (min-width: 64rem) {
+  .ctab__body {
+    grid-template-columns: 1fr minmax(0, 30rem);
+    align-items: end;
+    column-gap: var(--s-9);
+  }
+  .ctab__meta { margin-top: var(--s-8); }
+}

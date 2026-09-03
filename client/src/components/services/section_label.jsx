@@ -8,7 +8,7 @@ export default function SectionLabel() {
       <Eyebrow>{servicesIntro.label}</Eyebrow>
       <RevealText
         as="h2"
-        lines={['Full-spectrum design', 'under one roof.']}
+        lines={servicesIntro.headline}
         className="svc__title sec-title"
       />
       <p className="svc__intro">{servicesIntro.body}</p>

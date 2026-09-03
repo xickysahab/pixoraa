@@ -5,6 +5,9 @@ export const site = {
   locations: ['Dubai', 'London', 'India'],
   base: 'Delhi, India',
   email: 'hello@pixoraa.com',
+  phone: '+91 98765 43210',
+  address: 'B-85, Sector 63, Noida, Uttar Pradesh 201301',
+  mapHref: 'https://maps.google.com/?q=Sector+63+Noida',
   since: 2016,
 };
 

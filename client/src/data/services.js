@@ -1,7 +1,7 @@
 // The six capabilities, from the live site.
 export const servicesIntro = {
   label: 'What we do',
-  headline: 'Full-spectrum design under one roof.',
+  headline: ['Full-spectrum design', 'under one roof.'],
   body: 'Whether you need a complete brand overhaul or ongoing creative support, we have the expertise to deliver. No outsourcing, no excuses — just exceptional work from our senior team.',
 };
 

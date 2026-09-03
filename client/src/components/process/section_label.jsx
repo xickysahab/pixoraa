@@ -8,7 +8,7 @@ export default function SectionLabel() {
       <Eyebrow>{processIntro.label}</Eyebrow>
       <RevealText
         as="h2"
-        lines={['How we guide every', 'project to the finish line.']}
+        lines={processIntro.headline}
         className="proc__heading sec-title"
       />
       <p className="proc__intro">{processIntro.body}</p>

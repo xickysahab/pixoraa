@@ -1,5 +1,4 @@
 import { processContact } from '../../data/process';
-import { site } from '../../data/site';
 import Button from '../../common/button';
 
 export default function ProcessContactCard() {
@@ -18,7 +17,7 @@ export default function ProcessContactCard() {
         </div>
       </div>
       <p className="proc__card-line">{processContact.line}</p>
-      <Button href={`mailto:${site.email}`} variant="ghost">
+      <Button href="#contact" variant="ghost">
         Book a call
       </Button>
     </div>
